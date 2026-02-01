@@ -1,20 +1,14 @@
-# Use Tomcat 9 + JDK 11 (Java EE 7 compatible)
-FROM tomcat:9.0-jdk11
+# Use official GlassFish 4.1 image
+FROM glassfish:4.1
 
-# Remove default web apps
-RUN rm -rf /usr/local/tomcat/webapps/*
+# Remove default applications (optional)
+RUN rm -rf $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/*
 
-# Copy your WAR as ROOT
-COPY dist/RestaurantAdmin.war /usr/local/tomcat/webapps/ROOT.war
+# Copy your WAR file to autodeploy
+COPY dist/RestaurantAdmin.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
 
-# Use Render's PORT
-ENV PORT=${PORT}
+# Expose HTTP port
+EXPOSE 8080
 
-# Replace Tomcat's default port with Render's PORT
-RUN sed -i "s/port=\"8080\"/port=\"\${PORT}\"/" /usr/local/tomcat/conf/server.xml
-
-# Expose the port for local testing
-EXPOSE ${PORT}
-
-# Start Tomcat
-CMD ["catalina.sh", "run"]
+# Start GlassFish in foreground mode
+CMD ["asadmin", "start-domain", "-v", "domain1"]
