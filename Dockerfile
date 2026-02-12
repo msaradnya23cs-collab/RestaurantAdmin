@@ -1,14 +1,8 @@
-# Use latest stable Payara 5 Full
-FROM payara/server-full:5.2022.5
+# Lightweight Payara Micro (much better for Render free plan)
+FROM payara/micro:5.2022.5
 
-# Remove default deployed apps
-RUN rm -rf /opt/payara/appserver/glassfish/domains/domain1/autodeploy/*
+# Copy your WAR file into container
+COPY ROOT.war /opt/payara/ROOT.war
 
-# Copy your WAR file
-COPY ROOT.war /opt/payara/appserver/glassfish/domains/domain1/autodeploy/
-
-# Expose port
-EXPOSE 8080
-
-# Start Payara
-CMD ["asadmin", "start-domain", "--verbose"]
+# Render provides PORT automatically, so bind to it
+CMD ["sh", "-c", "java -jar /opt/payara/payara-micro.jar --deploy /opt/payara/ROOT.war --port $PORT"]
