@@ -1,5 +1,9 @@
-FROM payara/micro:5.2022.5
+FROM tomcat:9.0-jdk17-temurin
 
-COPY ROOT.war /opt/payara/app.war
+# Remove default apps
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-CMD ["--deploy", "/opt/payara/app.war", "--contextroot", "/", "--port", "8080", "--javaOptions", "-Xmx256m -Xms128m"]
+# Copy your WAR as ROOT
+COPY ROOT.war /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8080
