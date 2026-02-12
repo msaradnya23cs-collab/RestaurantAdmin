@@ -31,7 +31,7 @@
         }
     %>
 
-    <form method="post" action="CustomerServlet">
+<form method="post" action="<%=request.getContextPath()%>/CustomerServlet">
         <input type="hidden" name="action" value="<%= (editId != null ? "update" : "add") %>">
         <% if(editId != null) { %>
             <input type="hidden" name="id" value="<%= editId %>">
@@ -54,9 +54,9 @@
             <td><%= rs2.getString("name") %></td>
             <td><%= rs2.getString("phone") %></td>
             <td>
-                <button onclick="location.href='customers.jsp?editId=<%= rs2.getInt("id") %>'">Edit</button>
+                <button onclick="location.href='<%=request.getContextPath()%>/customers.jsp?editId=<%= rs2.getInt("id") %>'">Edit</button>
 
-                <button onclick="location.href='CustomerServlet?id=<%= rs2.getInt("id") %>'">
+                <button onclick="location.href='<%=request.getContextPath()%>/CustomerServlet?id=<%= rs2.getInt("id") %>'">
                     Delete
                 </button>
             </td>
@@ -64,7 +64,7 @@
         <% } %>
     </table>
 
-    <button onclick="location.href='dashboard.jsp'">Back to Dashboard</button>
+    <button onclick="location.href='<%=request.getContextPath()%>/dashboard.jsp'">Back to Dashboard</button>
 
 </div>
 </body>

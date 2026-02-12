@@ -1,10 +1,9 @@
 <%@ page import="java.sql.*, com.restaurant.DBConnection" %>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Menu | Restaurant App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
 </head>
 <body>
 <div class="overlay">
@@ -34,11 +33,12 @@
         }
     %>
 
-    <form method="post" action="MenuServlet">
+    <form method="post" action="<%=request.getContextPath()%>/MenuServlet">
         <input type="hidden" name="action" value="<%= (editId != null ? "update" : "add") %>">
         <% if (editId != null) { %>
             <input type="hidden" name="id" value="<%= editId %>">
         <% } %>
+
         <input type="text" name="name" placeholder="Item Name" value="<%= nameVal %>" required>
         <input type="number" step="0.01" name="price" placeholder="Price" value="<%= priceVal %>" required>
         <input type="submit" value="<%= (editId != null ? "Update Item" : "Add Item") %>">
@@ -56,14 +56,16 @@
             <td><%= rs.getString("name") %></td>
             <td><%= rs.getDouble("price") %></td>
             <td>
-                <button onclick="location.href='menu.jsp?editId=<%=rs.getInt("id")%>'">Edit</button>
-                <button onclick="location.href='MenuServlet?id=<%=rs.getInt("id")%>'">Delete</button>
+                <button onclick="location.href='<%=request.getContextPath()%>/menu.jsp?editId=<%=rs.getInt("id")%>'">Edit</button>
+                <button onclick="location.href='<%=request.getContextPath()%>/MenuServlet?id=<%=rs.getInt("id")%>'">Delete</button>
             </td>
         </tr>
         <% } %>
     </table>
 
-    <button onclick="location.href='dashboard.jsp'">Back to Dashboard</button>
+    <button onclick="location.href='<%=request.getContextPath()%>/dashboard.jsp'">
+        Back to Dashboard
+    </button>
 
 </div>
 </body>

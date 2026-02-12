@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Bookings | Restaurant App</title>
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
 </head>
 <body>
 <div class="overlay">
@@ -37,7 +37,7 @@
         }
     %>
 
-    <form method="post" action="BookingServlet">
+<form method="post" action="<%=request.getContextPath()%>/BookingServlet">
         <input type="hidden" name="action" value="<%= (editId != null ? "update" : "add") %>">
         <% if(editId != null) { %>
             <input type="hidden" name="id" value="<%= editId %>">
@@ -71,8 +71,8 @@
             <td><%= list.getDate("booking_date") %></td>
             <td><%= list.getTime("booking_time") %></td>
             <td>
-                <button onclick="location.href='booking.jsp?editId=<%=list.getInt("id")%>'">Edit</button>
-                <button onclick="if(confirm('Delete this booking?')) location.href='BookingServlet?id=<%=list.getInt("id")%>'">Delete</button>
+                <button onclick="location.href='<%=request.getContextPath()%>/booking.jsp?editId=<%=list.getInt("id")%>'">Edit</button>
+                <button onclick="if(confirm('Delete this booking?')) location.href='<%=request.getContextPath()%>/BookingServlet?id=<%=list.getInt("id")%>'">Delete</button>
             </td>
         </tr>
         <%  }
@@ -80,7 +80,7 @@
         %>
     </table>
 
-    <button onclick="location.href='dashboard.jsp'">Back to Dashboard</button>
+    <button onclick="location.href='<%=request.getContextPath()%>/dashboard.jsp'">>Back to Dashboard</button>
 
 </div>
 </body>

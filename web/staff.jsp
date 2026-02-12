@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Staff | Restaurant App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
 </head>
 <body>
 <div class="overlay">
@@ -34,7 +34,7 @@
         }
     %>
 
-    <form method="post" action="StaffServlet">
+    <form method="post" action="<%=request.getContextPath()%>/StaffServlet">
         <input type="hidden" name="action" value="<%= (editId != null ? "update" : "add") %>">
         <% if(editId != null) { %>
             <input type="hidden" name="id" value="<%= editId %>">
@@ -48,26 +48,25 @@
     <table>
         <tr><th>Name</th><th>Role</th><th>Actions</th></tr>
         <%
-            try {
-                Connection con = DBConnection.getConn();
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM staff");
-                while(rs.next()){
+            Connection con = DBConnection.getConn();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM staff");
+            while(rs.next()){
         %>
         <tr>
             <td><%= rs.getString("name") %></td>
             <td><%= rs.getString("role") %></td>
             <td>
-                <button onclick="location.href='staff.jsp?editId=<%= rs.getInt("id") %>'">Edit</button>
-                <button onclick="location.href='StaffServlet?id=<%= rs.getInt("id") %>'">Delete</button>
+                <button onclick="location.href='<%=request.getContextPath()%>/staff.jsp?editId=<%= rs.getInt("id") %>'">Edit</button>
+                <button onclick="location.href='<%=request.getContextPath()%>/StaffServlet?id=<%= rs.getInt("id") %>'">Delete</button>
             </td>
         </tr>
-        <%  }
-            } catch(Exception e) { e.printStackTrace(); }
-        %>
+        <% } %>
     </table>
 
-    <button onclick="location.href='dashboard.jsp'">Back to Dashboard</button>
+    <button onclick="location.href='<%=request.getContextPath()%>/dashboard.jsp'">
+        Back to Dashboard
+    </button>
 
 </div>
 </body>
