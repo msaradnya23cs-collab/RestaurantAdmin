@@ -10,11 +10,11 @@ public class DBConnection {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         String URL = System.getenv("DB_URL");
-        String USER = System.getenv("DB_USER");
+        String USER = System.getenv("DB_USER");   // ✅ FIXED
         String PASSWORD = System.getenv("DB_PASS");
 
         if (URL == null || USER == null || PASSWORD == null) {
-            throw new Exception("Environment variables not set properly.");
+            throw new Exception("DB env variables missing");
         }
 
         return DriverManager.getConnection(URL, USER, PASSWORD);
