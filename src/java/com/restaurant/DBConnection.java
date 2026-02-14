@@ -5,21 +5,18 @@ import java.sql.DriverManager;
 
 public class DBConnection {
 
-    public static Connection getConn() {
-        Connection con = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+    public static Connection getConn() throws Exception {
 
-            // Use environment variables instead of hardcoding credentials
-            String URL = System.getenv("DB_URL");
-            String USER = System.getenv("DB_USER");
-            String PASSWORD = System.getenv("DB_PASS");
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
-            con = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Connected to Aiven MySQL successfully!");
-        } catch (Exception e) {
-            e.printStackTrace();
+        String URL = System.getenv("DB_URL");
+        String USER = System.getenv("DB_USER");
+        String PASSWORD = System.getenv("DB_PASS");
+
+        if (URL == null || USER == null || PASSWORD == null) {
+            throw new Exception("Environment variables not set properly.");
         }
-        return con;
+
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }

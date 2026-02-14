@@ -2,7 +2,6 @@ package com.restaurant;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.servlet.ServletException;
@@ -10,12 +9,6 @@ import javax.servlet.http.*;
 
 public class LoginServlet extends HttpServlet {
 
-    // Get values from Render Environment Variables
-    private static final String URL = System.getenv("DB_URL");
-    private static final String DB_USER = System.getenv("DB_USER");
-    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -23,12 +16,11 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            Connection con = DriverManager.getConnection(URL, DB_USER, DB_PASSWORD);
+            Connection con = DBConnection.getConn();
 
             String sql = "SELECT * FROM users WHERE username=? AND password=?";
             PreparedStatement ps = con.prepareStatement(sql);
+
             ps.setString(1, username);
             ps.setString(2, password);
 
@@ -48,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.getWriter().println("Database Error: " + e.getMessage());
+            response.getWriter().println("Login Error: " + e.getMessage());
         }
     }
 }
