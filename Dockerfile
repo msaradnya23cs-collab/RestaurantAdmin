@@ -1,9 +1,10 @@
-FROM tomcat:9.0-jdk17-temurin
+FROM tomcat:9.0-jdk17
 
-RUN rm -rf /usr/local/tomcat/webapps/*
+# Copy MySQL Driver to Tomcat lib folder
+COPY mysql-connector-j.jar /usr/local/tomcat/lib/
 
-COPY ROOT.war /usr/local/tomcat/webapps/ROOT.war
+# Copy your WAR
+COPY dist/RestaurantAdmin.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
-
-CMD ["sh", "-c", "sed -i \"s/port=\\\"8080\\\"/port=\\\"$PORT\\\"/\" /usr/local/tomcat/conf/server.xml && catalina.sh run"]
+CMD ["catalina.sh", "run"]
