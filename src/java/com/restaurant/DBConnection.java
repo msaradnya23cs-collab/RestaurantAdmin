@@ -9,7 +9,7 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Use environment variables (Render will pass them)
+            // Use environment variables
             String host = System.getenv("DB_HOST");
             String port = System.getenv("DB_PORT");
             String db   = System.getenv("DB_NAME");
