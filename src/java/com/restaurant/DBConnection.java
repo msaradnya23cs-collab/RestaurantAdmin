@@ -9,13 +9,17 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Get DB credentials from environment variables
-            String url = System.getenv("DB_URL");      // e.g. jdbc:mysql://host:port/dbname?useSSL=true&verifyServerCertificate=true&requireSSL=true
-            String user = System.getenv("DB_USER");    // e.g. avnadmin
-            String pass = System.getenv("DB_PASS");    // your Aiven password
+            // Read connection info from environment variables
+            String host = System.getenv("DB_HOST");       // e.g. mysql-1ad1b9b-student-9e3.f.aivencloud.com
+            String port = System.getenv("DB_PORT");       // e.g. 21886
+            String db   = System.getenv("DB_NAME");       // e.g. defaultdb
+            String user = System.getenv("DB_USER");       // e.g. avnadmin
+            String pass = System.getenv("DB_PASS");       // e.g. your Aiven password
 
-            Connection c = DriverManager.getConnection(url, user, pass);
-            return c;
+            String url = "jdbc:mysql://" + host + ":" + port + "/" + db + "?useSSL=true&requireSSL=true";
+
+            return DriverManager.getConnection(url, user, pass);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
