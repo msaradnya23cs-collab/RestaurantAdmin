@@ -1,14 +1,14 @@
-# Use OmniFish GlassFish image (works reliably on Render)
+# Use OmniFish GlassFish image
 FROM omnifish/glassfish:latest
 
 # Remove default apps
-RUN rm -rf /glassfish5/glassfish/domains/domain1/autodeploy/*
+RUN rm -rf /glassfish/glassfish/domains/domain1/autodeploy/*
 
 # Copy your WAR file
-COPY ROOT.war /glassfish5/glassfish/domains/domain1/autodeploy/
+COPY ROOT.war /glassfish/glassfish/domains/domain1/autodeploy/
 
-# Expose the HTTP port
+# Expose GlassFish port
 EXPOSE 8080
 
-# Start GlassFish in verbose mode
-CMD ["/glassfish5/bin/asadmin", "start-domain", "-v"]
+# Start the server
+CMD ["/glassfish/glassfish/bin/asadmin", "start-domain", "-v"]
