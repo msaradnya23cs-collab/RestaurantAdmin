@@ -6,22 +6,19 @@ import java.sql.DriverManager;
 public class DBConnection {
 
     public static Connection getConn() {
+        Connection con = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Use environment variables
-            String host = System.getenv("DB_HOST");
-            String port = System.getenv("DB_PORT");
-            String db   = System.getenv("DB_NAME");
-            String user = System.getenv("DB_USER");
-            String pass = System.getenv("DB_PASS");
+            // Read Render/Aiven environment variables
+            String URL = System.getenv("DB_URL");      // Example: jdbc:mysql://yourhost:3306/dbname
+            String USER = System.getenv("DB_USER");    // DB username
+            String PASSWORD = System.getenv("DB_PASS"); // DB password
 
-            String url = "jdbc:mysql://" + host + ":" + port + "/" + db + "?useSSL=true&requireSSL=true";
-            return DriverManager.getConnection(url, user, pass);
-
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return con;
     }
 }
