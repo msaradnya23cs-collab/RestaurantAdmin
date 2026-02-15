@@ -1,4 +1,4 @@
-FROM airhacks/glassfish:6.2.5
+FROM airhacks/glassfish
 
 ENV JVM_ARGS="-Xms32m -Xmx160m -XX:MaxMetaspaceSize=96m -XX:+UseSerialGC"
 
