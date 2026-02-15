@@ -1,7 +1,7 @@
-FROM tomcat:9.0-jdk17
+FROM airhacks/glassfish
 
-COPY mysql.jar /usr/local/tomcat/lib/mysql.jar
+COPY dist/RestaurantAdmin.war /opt/glassfish7/glassfish/domains/domain1/autodeploy/
 
-COPY ROOT.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
+CMD ["asadmin", "start-domain", "-v"]
