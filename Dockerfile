@@ -2,13 +2,13 @@
 FROM omnifish/glassfish:latest
 
 # Remove default apps (optional)
-RUN rm -rf /opt/glassfish/domains/domain1/autodeploy/*
+RUN rm -rf /glassfish5/glassfish/domains/domain1/autodeploy/*
 
 # Copy your WAR file
-COPY ROOT.war /opt/glassfish/domains/domain1/autodeploy/
+COPY ROOT.war /glassfish5/glassfish/domains/domain1/autodeploy/
 
-# Expose the HTTP port
+# Expose HTTP port
 EXPOSE 8080
 
 # Start GlassFish
-CMD ["/opt/glassfish/bin/asadmin", "start-domain", "-v"]
+CMD ["/glassfish5/glassfish/bin/asadmin", "start-domain", "-v"]
