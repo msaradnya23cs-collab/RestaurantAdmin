@@ -1,14 +1,14 @@
-# Use official OmniFish GlassFish image
+# Use OmniFish GlassFish image (official)
 FROM omnifish/glassfish:latest
 
-# Remove any previous auto-deployed apps
+# Remove old auto-deploy apps
 RUN rm -rf /opt/glassfish5/glassfish/domains/domain1/autodeploy/*
 
-# Copy your WAR file to auto-deploy folder
+# Copy your WAR file
 COPY ROOT.war /opt/glassfish5/glassfish/domains/domain1/autodeploy/
 
-# Expose GlassFish default port
+# Expose default HTTP port
 EXPOSE 8080
 
-# Start GlassFish
+# Correct start command for GlassFish
 CMD ["/opt/glassfish5/bin/asadmin", "start-domain", "-v"]
