@@ -1,7 +1,7 @@
 FROM airhacks/glassfish
 
-ENV JVM_ARGS="-Xms32m -Xmx160m -XX:MaxMetaspaceSize=96m -XX:+UseSerialGC"
+ENV JVM_ARGS="-Xms32m -Xmx128m -XX:MaxMetaspaceSize=64m -XX:+UseSerialGC"
 
-COPY dist/ROOT.war $DEPLOYMENT_DIR/ROOT.war
+COPY dist/ROOT.war /opt/glassfish/domains/domain1/autodeploy/ROOT.war
 
 EXPOSE 8080
