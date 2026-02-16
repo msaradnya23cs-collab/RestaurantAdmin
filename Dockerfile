@@ -1,5 +1,5 @@
 FROM payara/micro:7.2026.1
 
-COPY ROOT.war $DEPLOY_DIR
+COPY ROOT.war /opt/payara/deployments/ROOT.war
 
-EXPOSE 8080
+CMD ["--port", "${PORT}", "--deploy", "/opt/payara/deployments/ROOT.war"]
