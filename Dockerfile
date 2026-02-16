@@ -1,5 +1,10 @@
-FROM payara/micro:7.2026.1
+FROM payara/micro:5.2022.5-jdk11
 
-COPY ROOT.war /opt/payara/deployments/ROOT.war
+# Copy your WAR file
+COPY ROOT.war /opt/payara/deployments/
 
-CMD ["--port", "${PORT}", "--deploy", "/opt/payara/deployments/ROOT.war"]
+# Expose Render port
+EXPOSE 8080
+
+# Start Payara correctly
+CMD ["--deploy", "/opt/payara/deployments/ROOT.war", "--port", "8080"]
