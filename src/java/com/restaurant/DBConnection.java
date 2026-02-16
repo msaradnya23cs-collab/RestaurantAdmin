@@ -9,7 +9,6 @@ public class DBConnection {
         Connection con = null;
         try {
             Class.forName("org.postgresql.Driver");
-
             String URL = "jdbc:postgresql://dpg-d698p26mcj7s738kv76g-a.oregon-postgres.render.com:5432/restaurantdb_9uyr?sslmode=require";
             String USER = "admin";
             String PASSWORD = "JJmR5tx2uEw71oUZdwQKjQApcql58ulX";
