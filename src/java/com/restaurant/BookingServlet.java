@@ -3,7 +3,9 @@ package com.restaurant;
 import java.io.IOException;
 import java.sql.*;
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+@WebServlet("/BookingServlet")
 
 public class BookingServlet extends HttpServlet {
 

@@ -14,8 +14,8 @@
     <% if(request.getParameter("error") != null) { %>
         <div style="color:red;"><%= request.getParameter("error") %></div>
     <% } %>
+<form action="LoginServlet" method="post">
 
-    <form action="<%=request.getContextPath()%>/LoginServlet" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Login">
