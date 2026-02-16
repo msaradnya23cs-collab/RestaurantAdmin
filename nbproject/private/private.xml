@@ -2,28 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/customers.jsp</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/build.xml</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/style.css</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/menu.jsp</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/logout.jsp</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/src/java/com/restaurant/LoginServlet.java</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/src/java/com/restaurant/SignupServlet.java</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/src/java/com/restaurant/StaffServlet.java</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/nbproject/build-impl.xml</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/signup.jsp</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/dashboard.jsp</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/src/java/com/restaurant/DBConnection.java</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/WEB-INF/web.xml</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/images/hotel.jpg</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/login.jsp</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/booking.jsp</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/src/java/com/restaurant/MenuServlet.java</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/src/java/com/restaurant/CustomerServlet.java</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/index.html</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/src/java/com/restaurant/BookingServlet.java</file>
-            <file>file:/C:/NetbeansProject/RestaurantAdmin/web/staff.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

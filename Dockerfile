@@ -1,14 +1,12 @@
-# Use OmniFish GlassFish image (official)
-FROM omnifish/glassfish:latest
+FROM payara/server-full:7.2026.1
 
-# Remove old auto-deploy apps
-RUN rm -rf /opt/glassfish5/glassfish/domains/domain1/autodeploy/*
+# Remove old deployments
+RUN rm -rf /opt/payara/deployments/*
 
-# Copy your WAR file
-COPY ROOT.war /opt/glassfish5/glassfish/domains/domain1/autodeploy/
+# Copy WAR
+COPY dist/ROOT.war /opt/payara/deployments/
 
-# Expose default HTTP port
 EXPOSE 8080
 
-# Correct start command for GlassFish
-CMD ["/opt/glassfish5/bin/asadmin", "start-domain", "-v"]
+# Start server
+CMD ["start", "--verbose"]

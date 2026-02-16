@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.*; // use javax, not jakarta
 
 public class LoginServlet extends HttpServlet {
 
@@ -17,6 +17,11 @@ public class LoginServlet extends HttpServlet {
 
         try {
             Connection con = DBConnection.getConn();
+
+            if (con == null) {
+                response.getWriter().println("DB Connection Failed!");
+                return;
+            }
 
             String sql = "SELECT * FROM users WHERE username=? AND password=?";
             PreparedStatement ps = con.prepareStatement(sql);

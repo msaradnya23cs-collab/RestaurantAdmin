@@ -8,12 +8,11 @@ public class DBConnection {
     public static Connection getConn() {
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("org.postgresql.Driver");
 
-            // Read Render/Aiven environment variables
-            String URL = System.getenv("DB_URL");      // Example: jdbc:mysql://yourhost:3306/dbname
-            String USER = System.getenv("DB_USER");    // DB username
-            String PASSWORD = System.getenv("DB_PASS"); // DB password
+            String URL = "jdbc:postgresql://dpg-d698p26mcj7s738kv76g-a.oregon-postgres.render.com:5432/restaurantdb_9uyr";
+            String USER = "admin";
+            String PASSWORD = "JJmR5tx2uEw71oUZdwQKjQApcql58ulX";
 
             con = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (Exception e) {
