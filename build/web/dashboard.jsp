@@ -1,10 +1,10 @@
-<%@ page language="java" %>
 <%
     if(session.getAttribute("user") == null){
-        response.sendRedirect(request.getContextPath() + "/login.jsp");
+        response.sendRedirect("login.jsp");
         return;
     }
 %>
+
 
 <!DOCTYPE html>
 <html>

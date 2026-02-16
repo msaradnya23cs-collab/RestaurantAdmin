@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.servlet.ServletException;
-import javax.servlet.http.*; // use javax, not jakarta
+import javax.servlet.http.*;
 
 public class LoginServlet extends HttpServlet {
 
@@ -25,7 +25,6 @@ public class LoginServlet extends HttpServlet {
 
             String sql = "SELECT * FROM users WHERE username=? AND password=?";
             PreparedStatement ps = con.prepareStatement(sql);
-
             ps.setString(1, username);
             ps.setString(2, password);
 
@@ -36,7 +35,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("user", username);
                 response.sendRedirect("dashboard.jsp");
             } else {
-                response.sendRedirect("login.jsp?error=Invalid Username or Password");
+                response.sendRedirect("index.jsp?error=Invalid Username or Password");
             }
 
             rs.close();
