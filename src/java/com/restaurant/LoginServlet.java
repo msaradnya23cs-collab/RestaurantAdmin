@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
             } else {
 
                 // FAILURE → login.jsp (NOT index.jsp)
-                response.sendRedirect("login.jsp?error=Invalid Username or Password");
+response.sendRedirect("index.jsp?error=Invalid Username or Password");
 
             }
 
