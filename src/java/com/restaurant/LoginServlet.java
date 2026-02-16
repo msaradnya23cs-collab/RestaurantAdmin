@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
@@ -33,11 +34,18 @@ public class LoginServlet extends HttpServlet {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+
                 HttpSession session = request.getSession();
                 session.setAttribute("user", username);
+
+                // SUCCESS → dashboard
                 response.sendRedirect("dashboard.jsp");
+
             } else {
-                response.sendRedirect("index.jsp?error=Invalid Username or Password");
+
+                // FAILURE → login.jsp (NOT index.jsp)
+                response.sendRedirect("login.jsp?error=Invalid Username or Password");
+
             }
 
             rs.close();
@@ -45,8 +53,10 @@ public class LoginServlet extends HttpServlet {
             con.close();
 
         } catch (Exception e) {
+
             e.printStackTrace();
             response.getWriter().println("Login Error: " + e.getMessage());
+
         }
     }
 }
