@@ -1,4 +1,8 @@
 <%@ page language="java" %>
+<%
+response.sendRedirect("login.jsp");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
