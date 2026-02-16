@@ -1,16 +1,16 @@
-# Use Tomcat 10 (lightweight)
-FROM tomcat:10.1-jdk17
+# Use Tomcat base image
+FROM tomcat:10.1.17-jdk17
 
-# Remove default webapps
+# Remove default apps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy your WAR as ROOT.war
+# Copy your WAR
 COPY dist/ROOT.war /usr/local/tomcat/webapps/ROOT.war
 
 # Copy PostgreSQL JDBC driver
 COPY libs/postgresql-42.6.0.jar /usr/local/tomcat/lib/
 
-# Expose HTTP port
+# Expose port
 EXPOSE 8080
 
 # Start Tomcat
