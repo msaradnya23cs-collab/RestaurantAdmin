@@ -13,11 +13,12 @@
         <div style="color:red;"><%= request.getParameter("error") %></div>
     <% } %>
 
-    <form action="LoginServlet" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
-    </form>
+<form action="LoginServlet" method="post">
+    <input type="text" name="username" required />
+    <input type="password" name="password" required />
+    <button type="submit">Login</button>
+</form>
+
 
     <a href="<%=request.getContextPath()%>/signup.jsp">Don't have an account? Sign Up</a>
 </div>

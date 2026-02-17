@@ -3,69 +3,62 @@
 <html>
 <head>
     <title>Menu | Restaurant App</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="overlay">
 
-    <h2>Menu Items</h2>
+<h2>Menu Items</h2>
+<% if(request.getParameter("msg") != null) { %>
+    <div class="success"><%= request.getParameter("msg") %></div>
+<% } %>
 
-    <% if(request.getParameter("msg") != null) { %>
-        <div class="success"><%= request.getParameter("msg") %></div>
-    <% } %>
-
-    <%
-        String editId = request.getParameter("editId");
-        String nameVal = "";
-        String priceVal = "";
-
-        if (editId != null) {
-            try {
-                Connection c = DBConnection.getConn();
-                PreparedStatement ps = c.prepareStatement("SELECT * FROM menu WHERE id=?");
-                ps.setInt(1, Integer.parseInt(editId));
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    nameVal = rs.getString("name");
-                    priceVal = String.valueOf(rs.getDouble("price"));
-                }
-            } catch(Exception e) { e.printStackTrace(); }
+<%
+    String editId = request.getParameter("editId");
+    String nameVal = "";
+    String priceVal = "";
+    if(editId != null){
+        Connection con = DBConnection.getConn();
+        PreparedStatement ps = con.prepareStatement("SELECT * FROM menu WHERE id=?");
+        ps.setInt(1, Integer.parseInt(editId));
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            nameVal = rs.getString("name");
+            priceVal = String.valueOf(rs.getDouble("price"));
         }
-    %>
+    }
+%>
 
-    <form method="post" action="<%=request.getContextPath()%>/MenuServlet">
-        <input type="hidden" name="action" value="<%= (editId != null ? "update" : "add") %>">
-        <% if (editId != null) { %>
-            <input type="hidden" name="id" value="<%= editId %>">
-        <% } %>
+<form method="post" action="MenuServlet">
+    <input type="hidden" name="action" value="<%= (editId != null ? "update" : "add") %>">
+    <% if(editId != null){ %>
+        <input type="hidden" name="id" value="<%= editId %>">
+    <% } %>
+    <input type="text" name="name" placeholder="Item Name" value="<%= nameVal %>" required>
+    <input type="number" step="0.01" name="price" value="<%= priceVal %>" required>
+    <input type="submit" value="<%= (editId != null ? "Update Item" : "Add Item") %>">
+</form>
 
-        <input type="text" name="name" placeholder="Item Name" value="<%= nameVal %>" required>
-        <input type="number" step="0.01" name="price" placeholder="Price" value="<%= priceVal %>" required>
-        <input type="submit" value="<%= (editId != null ? "Update Item" : "Add Item") %>">
-    </form>
+<table>
+<tr><th>Name</th><th>Price</th><th>Actions</th></tr>
+<%
+    Connection con2 = DBConnection.getConn();
+    Statement st = con2.createStatement();
+    ResultSet rs2 = st.executeQuery("SELECT * FROM menu ORDER BY id");
+    while(rs2.next()) {
+%>
+<tr>
+    <td><%= rs2.getString("name") %></td>
+    <td><%= rs2.getDouble("price") %></td>
+    <td>
+        <button onclick="location.href='menu.jsp?editId=<%= rs2.getInt("id") %>'">Edit</button>
+        <button onclick="location.href='MenuServlet?id=<%= rs2.getInt("id") %>'">Delete</button>
+    </td>
+</tr>
+<% } %>
+</table>
 
-    <table>
-        <tr><th>Name</th><th>Price</th><th>Actions</th></tr>
-        <%
-            Connection c = DBConnection.getConn();
-            Statement stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM menu");
-            while(rs.next()) {
-        %>
-        <tr>
-            <td><%= rs.getString("name") %></td>
-            <td><%= rs.getDouble("price") %></td>
-            <td>
-                <button onclick="location.href='<%=request.getContextPath()%>/menu.jsp?editId=<%=rs.getInt("id")%>'">Edit</button>
-                <button onclick="location.href='<%=request.getContextPath()%>/MenuServlet?id=<%=rs.getInt("id")%>'">Delete</button>
-            </td>
-        </tr>
-        <% } %>
-    </table>
-
-    <button onclick="location.href='<%=request.getContextPath()%>/dashboard.jsp'">
-        Back to Dashboard
-    </button>
+<button onclick="location.href='dashboard.jsp'">Back to Dashboard</button>
 
 </div>
 </body>

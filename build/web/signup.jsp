@@ -9,9 +9,13 @@
 
     <h2>Signup</h2>
 
-<form action="SignupServlet" method="post">
-        <input type="text" name="username" required>
-        <input type="password" name="password" required>
+    <% if(request.getParameter("msg") != null){ %>
+        <div class="error"><%= request.getParameter("msg") %></div>
+    <% } %>
+
+    <form action="<%=request.getContextPath()%>/SignupServlet" method="post">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Signup">
     </form>
 
