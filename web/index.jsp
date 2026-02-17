@@ -1,7 +1,8 @@
-<%@ page language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-response.sendRedirect("login.jsp");
+    response.sendRedirect("login.jsp");
 %>
+
 
 <!DOCTYPE html>
 <html>
