@@ -1,4 +1,4 @@
-<%@ page language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,23 +8,18 @@
 </head>
 <body>
 <div class="overlay">
-
     <h2>Login to DineDesk</h2>
-
     <% if(request.getParameter("error") != null) { %>
         <div style="color:red;"><%= request.getParameter("error") %></div>
     <% } %>
-<form action="LoginServlet" method="post">
 
+    <form action="LoginServlet" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Login">
     </form>
 
-    <a href="<%=request.getContextPath()%>/signup.jsp">
-        Don't have an account? Sign Up
-    </a>
-
+    <a href="<%=request.getContextPath()%>/signup.jsp">Don't have an account? Sign Up</a>
 </div>
 </body>
 </html>
