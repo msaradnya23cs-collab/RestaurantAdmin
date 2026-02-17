@@ -1,7 +1,10 @@
 FROM payara/micro:5.2022.5-jdk11
 
-COPY ROOT.war $DEPLOY_DIR/ROOT.war
+# Copy WAR as ROOT
+COPY ROOT.war /opt/payara/deployments/ROOT.war
 
+# Expose port
 EXPOSE 8080
 
-CMD ["--deploy", "/opt/payara/deployments/ROOT.war", "--contextroot", "/"]
+# Force Payara to deploy ROOT.war
+CMD ["java", "-jar", "/opt/payara/payara-micro.jar", "--deploymentDir", "/opt/payara/deployments", "--contextRoot", "/"]
